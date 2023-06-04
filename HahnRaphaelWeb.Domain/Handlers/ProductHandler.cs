@@ -7,7 +7,7 @@ using HahnRaphaelWeb.Domain.Repositories;
 
 namespace HahnRaphaelWeb.Domain.Handlers
 {
-    public class ProductHandler : IHandler<CreateProductCommand>, IHandler<UpdateProductCommand>
+    public class ProductHandler : IHandler<CreateProductCommand>
     {
         private readonly IProductRepository _repository;
         public ProductHandler(IProductRepository repository)
@@ -20,13 +20,12 @@ namespace HahnRaphaelWeb.Domain.Handlers
             {
                 return new GenericCommandResult(false, "Ops, it is not valid", command);
             };
-            
-            
-        }
 
-        public ICommandResult Handle(UpdateProductCommand command)
-        {
-            throw new NotImplementedException();
+            var product = new Product(command.Name, command.Description, command.Price);
+
+            _repository.Create(product);
+
+            return new GenericCommandResult(true, "product is saved", product);
         }
     }
 }
