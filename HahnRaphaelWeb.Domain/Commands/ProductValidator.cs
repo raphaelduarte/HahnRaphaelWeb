@@ -14,7 +14,7 @@ namespace HahnRaphaelWeb.Domain.Commands
 
             RuleFor(product => product.Description)
                 .NotNull().WithMessage("Product' description can not be null")
-                .NotEmpty().WithMessage("Produc's description can not be empty")
+                .NotEmpty().WithMessage("Product's description can not be empty")
                 .Length(10, 255).WithMessage("Product's description of lenght have to be between 10 and 255 character"); ;
 
             RuleFor(product => product.Price)
