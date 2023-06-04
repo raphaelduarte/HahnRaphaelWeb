@@ -1,8 +1,14 @@
+using FluentValidation.AspNetCore;
+using HahnRaphaelWeb.Domain.Commands;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllers()
+    .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<CreateProductCommand>())
+    .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<UpdateProductCommand>());
 
-builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

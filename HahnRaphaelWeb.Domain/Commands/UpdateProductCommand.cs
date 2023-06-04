@@ -1,11 +1,23 @@
 ﻿using FluentValidation;
-using HahnRaphaelWeb.Domain.Entities;
+using HahnRaphaelWeb.Domain.Commands.Contracts;
 
 namespace HahnRaphaelWeb.Domain.Commands
 {
-    public class ProductValidator : AbstractValidator<Product>
+    public class UpdateProductCommand : AbstractValidator<UpdateProductCommand>, ICommand
     {
-        public ProductValidator()
+        public UpdateProductCommand() { }
+
+        public UpdateProductCommand(string name, string description, double price)
+        {
+            Name = name;
+            Description = description;
+            Price = price;
+        }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public double Price { get; set; }
+
+        public void Validate()
         {
             RuleFor(product => product.Name)
                 .NotNull().WithMessage("Product's name can not be null")
