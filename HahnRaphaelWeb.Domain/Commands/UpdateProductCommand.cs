@@ -32,7 +32,7 @@ namespace HahnRaphaelWeb.Domain.Commands
             RuleFor(product => product.Price)
                 .NotNull().WithMessage("Product's price can not be null")
                 .NotEmpty().WithMessage("Product's price can not be empty")
-                .GreaterThanOrEqualTo(0).WithMessage("Price have to be greater than or equal to 0");
+                .GreaterThan(0).WithMessage("Price have to be greater than 0");
         }
     }
 }
