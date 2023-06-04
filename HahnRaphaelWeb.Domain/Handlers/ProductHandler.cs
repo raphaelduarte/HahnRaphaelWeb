@@ -16,7 +16,7 @@ namespace HahnRaphaelWeb.Domain.Handlers
         }
         public ICommandResult Handle(CreateProductCommand command)
         {
-            if (!command.Validate(command).IsValid)
+            if (command.Validate(command).IsValid == false)
             {
                 return new GenericCommandResult(false, "Ops, it is not valid", command);
             };
