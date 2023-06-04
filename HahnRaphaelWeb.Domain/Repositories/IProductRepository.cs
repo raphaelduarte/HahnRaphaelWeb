@@ -6,6 +6,7 @@ namespace HahnRaphaelWeb.Domain.Repositories
     {
         void Create(Product product);
         void Update(Product product);
+        void Remove(Product product);
         Product GetById(Guid id, string name);
     }
 }

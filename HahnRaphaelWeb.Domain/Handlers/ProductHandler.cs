@@ -8,7 +8,7 @@ using HahnRaphaelWeb.Domain.Repositories;
 
 namespace HahnRaphaelWeb.Domain.Handlers
 {
-    public class ProductHandler : IHandler<CreateProductCommand>, IHandler<UpdateProductCommand>
+    public class ProductHandler : IHandler<CreateProductCommand>, IHandler<UpdateProductCommand>, IHandler<RemoveProductCommand>
     {
         private readonly IProductRepository _repository;
         public ProductHandler(IProductRepository repository)
@@ -45,6 +45,20 @@ namespace HahnRaphaelWeb.Domain.Handlers
             _repository.Update(product);
 
             return new GenericCommandResult(true,"Product is updated", product);
+        }
+
+        public ICommandResult Handle(RemoveProductCommand command)
+        {
+            command.Validate();
+            if (command.Validate(command).IsValid == false)
+            {
+                return new GenericCommandResult(false, "Ops, it is not valid", command);
+            };
+
+            var product = _repository.GetById(command.Id, command.Name);
+            _repository.Remove(product);
+
+            return new GenericCommandResult(true, "Product is removed", true);
         }
     }
 }

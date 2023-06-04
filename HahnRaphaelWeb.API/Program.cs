@@ -6,7 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers()
     .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<CreateProductCommand>())
-    .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<UpdateProductCommand>());
+    .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<UpdateProductCommand>())
+    .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<RemoveProductCommand>());
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
