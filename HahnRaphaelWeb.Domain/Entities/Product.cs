@@ -1,4 +1,6 @@
-﻿namespace HahnRaphaelWeb.Domain.Entities
+﻿using System.Security.Cryptography;
+
+namespace HahnRaphaelWeb.Domain.Entities
 {
     public class Product : Entity
     {
@@ -11,5 +13,12 @@
         public string Name { get; private set; }
         public string Description { get; private set; }
         public double Price { get; private set; }
+
+        public void UpdateProduct(string name, string description, double price)
+        {
+            Name = name;
+            Description = description;
+            Price = price;
+        }
     }
 }

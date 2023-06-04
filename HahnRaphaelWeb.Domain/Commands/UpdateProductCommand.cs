@@ -7,12 +7,14 @@ namespace HahnRaphaelWeb.Domain.Commands
     {
         public UpdateProductCommand() { }
 
-        public UpdateProductCommand(string name, string description, double price)
+        public UpdateProductCommand(Guid id, string name, string description, double price)
         {
+            Id = id;   
             Name = name;
             Description = description;
             Price = price;
         }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
