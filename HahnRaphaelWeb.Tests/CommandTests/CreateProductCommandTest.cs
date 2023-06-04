@@ -5,7 +5,7 @@ namespace HahnRaphaelWeb.Tests.CommandTests
     [TestClass]
     public class CreateProductCommandTest
     {
-        private readonly CreateProductCommand _invalidCommand = new CreateProductCommand("a","a",0);
+        private readonly CreateProductCommand _invalidCommand = new CreateProductCommand("","",0);
 
         private readonly CreateProductCommand _validCommand = new CreateProductCommand("banana", "that`s a normal description", 1);
 
