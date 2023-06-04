@@ -3,8 +3,8 @@ using HahnRaphaelWeb.Domain.Entities;
 
 namespace HahnRaphaelWeb.Domain.Commands.Contracts
 {
-    public interface ICommand
+    public abstract class ICommand : ProductValidator
     {
-        bool Validate();
+        public abstract bool Validate();
     }
 }
