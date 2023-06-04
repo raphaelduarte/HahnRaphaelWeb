@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HahnRaphaelWeb.Domain.Entities
+﻿namespace HahnRaphaelWeb.Domain.Entities
 {
     public abstract class Entity : IEquatable<Entity>
     {
