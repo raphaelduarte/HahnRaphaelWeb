@@ -20,6 +20,11 @@ namespace HahnRaphaelWeb.Tests.Repositories
             
         }
 
+        public Product GetById(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Product GetById(Guid id, string name)
         {
             return new Product("banana","That's a banana",1);

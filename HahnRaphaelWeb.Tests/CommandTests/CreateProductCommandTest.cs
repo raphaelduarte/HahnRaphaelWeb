@@ -1,3 +1,4 @@
+using HahnRaphaelWeb.Domain;
 using HahnRaphaelWeb.Domain.Commands;
 
 namespace HahnRaphaelWeb.Tests.CommandTests
@@ -13,16 +14,18 @@ namespace HahnRaphaelWeb.Tests.CommandTests
         [TestMethod]
         public void Command_invalid()
         {
-            _invalidCommand.Validate();
-            Assert.AreEqual(false, _invalidCommand.Validate(_invalidCommand).IsValid);
+            CreateProductValidator validator = new CreateProductValidator();
+            var resultInvalid = validator.Validate(_invalidCommand).IsValid;
+            Assert.AreEqual(false, resultInvalid);
             
         }
 
         [TestMethod]
         public void Command_valid()
         {
-            _validCommand.Validate();
-            Assert.AreEqual(true, _validCommand.Validate(_validCommand).IsValid);
+            CreateProductValidator validator = new CreateProductValidator();
+            var resultValid = validator.Validate(_validCommand).IsValid;
+            Assert.AreEqual(true, resultValid);
         }
     }
 }
