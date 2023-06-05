@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using FluentValidation;
 using FluentValidation.Results;
 using HahnRaphaelWeb.Domain.Commands;
 using HahnRaphaelWeb.Domain.Commands.Contracts;
@@ -17,30 +18,35 @@ namespace HahnRaphaelWeb.Domain.Handlers
         }
         public ICommandResult Handle(CreateProductCommand command)
         {
-            command.Validate();
-            if (command.Validate(command).IsValid == false)
+            CreateProductValidator validator = new CreateProductValidator();
+            var validation = validator.Validate(command);
+            
+
+            if (validation.IsValid == false)
             {
                 return new GenericCommandResult(false, "Ops, it is not valid", command);
             };
 
             var product = new Product(command.Name, command.Description, command.Price);
-
             _repository.Create(product);
 
-            return new GenericCommandResult(true, "product is saved", product);
+            return new GenericCommandResult(true, "Product saved", product);
         }
 
         public ICommandResult Handle(UpdateProductCommand command)
         {
-            command.Validate();
-            if (command.Validate(command).IsValid == false)
+            UpdateProductValidator validator = new UpdateProductValidator();
+            var validation = validator.Validate(command);
+
+
+            if (validation.IsValid == false)
             {
                 return new GenericCommandResult(false, "Ops, it is not valid", command);
             };
 
-            var product = _repository.GetById(command.Id, command.Name);
+            var product = _repository.GetById(command.Id);
 
-            product.UpdateProduct(command.Name,command.Description,command.Price);
+            product.UpdateProduct(command.Name,command.Description, command.Price);
 
             _repository.Update(product);
 
@@ -49,13 +55,16 @@ namespace HahnRaphaelWeb.Domain.Handlers
 
         public ICommandResult Handle(RemoveProductCommand command)
         {
-            command.Validate();
-            if (command.Validate(command).IsValid == false)
+            RemoveProductValidator validator = new RemoveProductValidator();
+            var validation = validator.Validate(command);
+
+
+            if (validation.IsValid == false)
             {
                 return new GenericCommandResult(false, "Ops, it is not valid", command);
             };
 
-            var product = _repository.GetById(command.Id, command.Name);
+            var product = _repository.GetById(command.Id);
             _repository.Remove(product);
 
             return new GenericCommandResult(true, "Product is removed", true);

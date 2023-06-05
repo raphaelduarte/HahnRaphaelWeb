@@ -24,5 +24,10 @@ namespace HahnRaphaelWeb.Tests.Repositories
         {
             return new Product("banana","That's a banana",1);
         }
+
+        public IEnumerable<Product> GetAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace HahnRaphaelWeb.Domain.Handlers.Contracts
 {
-    public interface IHandler<T> where T: ICommand
+    public interface IHandler<T>
     {
         ICommandResult Handle(T command);
     }

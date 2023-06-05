@@ -16,5 +16,11 @@ namespace HahnRaphaelWeb.Domain.Queries
                         x.Description == description &&
                         x.Price == price;
         }
+        public static Expression<Func<Product, bool>> GetAll()
+        {
+            return x => x.Name == x.Name &&
+                        x.Description == x.Description &&
+                        x.Price == x.Price;
+        }
     }
 }
